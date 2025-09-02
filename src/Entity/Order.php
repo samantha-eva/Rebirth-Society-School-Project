@@ -42,10 +42,17 @@ class Order
     #[ORM\ManyToMany(targetEntity: Pack::class, mappedBy: 'Commande')]
     private Collection $packs;
 
+    /**
+     * @var Collection<int, video>
+     */
+    #[ORM\ManyToMany(targetEntity: video::class, inversedBy: 'orders')]
+    private Collection $videosIndividuales;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
         $this->packs = new ArrayCollection();
+        $this->videosIndividuales = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -154,6 +161,30 @@ class Order
         if ($this->packs->removeElement($pack)) {
             $pack->removeCommande($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, video>
+     */
+    public function getVideosIndividuales(): Collection
+    {
+        return $this->videosIndividuales;
+    }
+
+    public function addVideosIndividuale(video $videosIndividuale): static
+    {
+        if (!$this->videosIndividuales->contains($videosIndividuale)) {
+            $this->videosIndividuales->add($videosIndividuale);
+        }
+
+        return $this;
+    }
+
+    public function removeVideosIndividuale(video $videosIndividuale): static
+    {
+        $this->videosIndividuales->removeElement($videosIndividuale);
 
         return $this;
     }
