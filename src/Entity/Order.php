@@ -36,9 +36,16 @@ class Order
     #[ORM\OneToMany(targetEntity: Payment::class, mappedBy: 'commande')]
     private Collection $payments;
 
+    /**
+     * @var Collection<int, Pack>
+     */
+    #[ORM\ManyToMany(targetEntity: Pack::class, mappedBy: 'Commande')]
+    private Collection $packs;
+
     public function __construct()
     {
         $this->payments = new ArrayCollection();
+        $this->packs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -119,6 +126,33 @@ class Order
             if ($payment->getCommande() === $this) {
                 $payment->setCommande(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pack>
+     */
+    public function getPacks(): Collection
+    {
+        return $this->packs;
+    }
+
+    public function addPack(Pack $pack): static
+    {
+        if (!$this->packs->contains($pack)) {
+            $this->packs->add($pack);
+            $pack->addCommande($this);
+        }
+
+        return $this;
+    }
+
+    public function removePack(Pack $pack): static
+    {
+        if ($this->packs->removeElement($pack)) {
+            $pack->removeCommande($this);
         }
 
         return $this;
