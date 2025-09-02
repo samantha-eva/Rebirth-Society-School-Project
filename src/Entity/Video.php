@@ -30,6 +30,10 @@ class Video
     #[ORM\ManyToMany(targetEntity: Pack::class, inversedBy: 'videos')]
     private Collection $packs;
 
+    #[ORM\ManyToOne(inversedBy: 'videos')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Categorie $categorie = null;
+
     public function __construct()
     {
         $this->packs = new ArrayCollection();
@@ -96,6 +100,18 @@ class Video
     public function removePack(Pack $pack): static
     {
         $this->packs->removeElement($pack);
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): static
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }
