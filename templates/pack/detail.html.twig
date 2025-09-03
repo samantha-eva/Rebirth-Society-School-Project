@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello PackController!{% endblock %}
+
+{% block body %}
+
+
+<main class="flex-1 bg-[#101010]">
+
+    <section class="py-16 sm:py-24">
+    <div class="container mx-auto px-4 max-w-7xl">
+    <div class="grid lg:grid-cols-2 gap-12 items-start">
+    <div class="flex flex-col gap-8">
+    <div class="rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-gray-800">
+    <div class="relative aspect-video">
+    <img alt="Aperçu de la vidéo de danse" class="w-full h-full object-cover" src=""/>
+    <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+    <div class="absolute inset-0 flex items-center justify-center">
+    <button class="bg-white/20 backdrop-blur-sm p-6 rounded-full text-white hover:bg-white/30 transition-all duration-300 scale-100 hover:scale-110">
+    <span class="material-symbols-outlined text-5xl">play_arrow</span>
+    </button>
+    </div>
+    </div>
+    </div>
+    <div>
+    <h3 class="text-2xl font-bold text-white mb-4">Contenu du pack</h3>
+    <ul class="space-y-3 text-[var(--text-secondary)]">
+    <li class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-[var(--primary-color)]">check_circle</span>
+    <span>10 vidéos exclusives en haute définition</span>
+    </li>
+    <li class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-[var(--primary-color)]">check_circle</span>
+    <span>Tutoriels pas à pas pour chaque mouvement</span>
+    </li>
+    <li class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-[var(--primary-color)]">check_circle</span>
+    <span>Accès illimité et à vie</span>
+    </li>
+    <li class="flex items-center gap-3">
+    <span class="material-symbols-outlined text-[var(--primary-color)]">check_circle</span>
+    <span>Conseils de chorégraphes professionnels</span>
+    </li>
+    </ul>
+    </div>
+    </div>
+    <div class="flex flex-col gap-6">
+    <div class="p-8 bg-gray-900 rounded-2xl border border-gray-800 shadow-xl">
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Pack Découverte Hip-Hop</h1>
+    <p class="text-lg text-[var(--text-secondary)] mb-6">Parfait pour les débutants souhaitant maîtriser les bases du Hip-Hop avec style et confiance.</p>
+    <div class="flex items-center gap-4 mb-6">
+    <div class="flex items-center">
+    <span class="material-symbols-outlined text-[var(--primary-color)]">star</span>
+    <span class="material-symbols-outlined text-[var(--primary-color)]">star</span>
+    <span class="material-symbols-outlined text-[var(--primary-color)]">star</span>
+    <span class="material-symbols-outlined text-[var(--primary-color)]">star</span>
+    <span class="material-symbols-outlined text-gray-600">star</span>
+    </div>
+    <span class="text-sm text-gray-400">4.0 (124 avis)</span>
+    </div>
+    <div class="mb-8">
+    <h2 class="text-xl font-bold text-white mb-4">Description</h2>
+    <p class="text-[var(--text-secondary)] leading-relaxed">
+                    Ce pack complet vous guidera à travers les techniques fondamentales du Hip-Hop, des isolations corporelles aux footworks complexes. Chaque vidéo est conçue pour être suivie facilement, vous permettant d'apprendre à votre propre rythme. Préparez-vous à groover et à impressionner sur la piste de danse !
+                    </p>
+    </div>
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 bg-gray-800/50 p-6 rounded-xl border border-gray-700">
+    <div>
+    <p class="text-sm text-gray-400">Prix</p>
+    <p class="text-4xl font-bold text-[var(--primary-color)]">49.99€</p>
+    </div>
+    <button class="w-full sm:w-auto flex items-center justify-center gap-3 bg-[var(--primary-color)] text-black font-bold py-4 px-8 rounded-full hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 text-lg">
+    <span class="material-symbols-outlined">add_shopping_cart</span>
+                    Ajouter au Panier
+                    </button>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+</main>
+{% endblock %}
