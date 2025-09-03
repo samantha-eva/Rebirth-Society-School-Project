@@ -43,9 +43,9 @@ class Order
     private Collection $packs;
 
     /**
-     * @var Collection<int, video>
+     * @var Collection<int, Video>
      */
-    #[ORM\ManyToMany(targetEntity: video::class, inversedBy: 'orders')]
+    #[ORM\ManyToMany(targetEntity: Video::class, inversedBy: 'orders')]
     private Collection $videosIndividuales;
 
     public function __construct()
@@ -166,14 +166,14 @@ class Order
     }
 
     /**
-     * @return Collection<int, video>
+     * @return Collection<int, Video>
      */
     public function getVideosIndividuales(): Collection
     {
         return $this->videosIndividuales;
     }
 
-    public function addVideosIndividuale(video $videosIndividuale): static
+    public function addVideosIndividuale(Video $videosIndividuale): static
     {
         if (!$this->videosIndividuales->contains($videosIndividuale)) {
             $this->videosIndividuales->add($videosIndividuale);
@@ -182,7 +182,7 @@ class Order
         return $this;
     }
 
-    public function removeVideosIndividuale(video $videosIndividuale): static
+    public function removeVideosIndividuale(Video $videosIndividuale): static
     {
         $this->videosIndividuales->removeElement($videosIndividuale);
 
