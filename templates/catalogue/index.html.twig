@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catalogue Vidéo{% endblock %}
+
+{% block body %}
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-12">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-[var(--text-primary)] mb-4 leading-tight">
+        Catalogue Vidéo
+      </h1>
+      <p class="text-lg text-[var(--text-secondary)] leading-relaxed max-w-3xl mx-auto">
+        Explorez notre collection de packs vidéo et de cours à l'unité, conçus pour enrichir votre parcours de danseur. Chaque offre propose un mélange unique de styles et de techniques, parfait pour tous les niveaux.
+      </p>
+    </div>
+
+    <!-- Filtres (statique pour l'instant, tu pourras filtrer via JS ou backend) -->
+    <div class="flex flex-wrap justify-center gap-4 mb-12">
+      <button class="bg-[var(--primary-color)] text-black font-semibold py-2 px-5 rounded-full text-sm transition-transform transform hover:scale-105">Tout</button>
+      <button class="bg-gray-800 text-[var(--text-secondary)] hover:bg-gray-700 hover:text-[var(--text-primary)] font-semibold py-2 px-5 rounded-full text-sm transition-colors duration-300">Packs Vidéo</button>
+      <button class="bg-gray-800 text-[var(--text-secondary)] hover:bg-gray-700 hover:text-[var(--text-primary)] font-semibold py-2 px-5 rounded-full text-sm transition-colors duration-300">Cours à l'Unité</button>
+      <button class="bg-gray-800 text-[var(--text-secondary)] hover:bg-gray-700 hover:text-[var(--text-primary)] font-semibold py-2 px-5 rounded-full text-sm transition-colors duration-300">Ballet</button>
+      <button class="bg-gray-800 text-[var(--text-secondary)] hover:bg-gray-700 hover:text-[var(--text-primary)] font-semibold py-2 px-5 rounded-full text-sm transition-colors duration-300">Hip Hop</button>
+      <button class="bg-gray-800 text-[var(--text-secondary)] hover:bg-gray-700 hover:text-[var(--text-primary)] font-semibold py-2 px-5 rounded-full text-sm transition-colors duration-300">Contemporain</button>
+    </div>
+
+    <!-- Grille catalogue dynamique -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {% for pack in packs %}
+        <div class="group flex flex-col bg-gray-800 rounded-lg overflow-hidden border border-gray-700 hover:border-[var(--primary-color)] transition-all duration-300 transform hover:-translate-y-1">
+          <div class="relative">
+            <div class="w-full bg-center bg-no-repeat aspect-square bg-cover">
+                </div>
+            
+            <div class="absolute top-2 right-2 bg-[var(--primary-color)] text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1">
+              <span class="material-symbols-outlined text-sm">
+               
+              </span>
+            
+            </div>
+
+            <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+              <a href="{{ path('pack_detail', {id: pack.id}) }}" class="bg-[var(--primary-color)] text-black font-bold p-3 rounded-full">
+                <span class="material-symbols-outlined">play_arrow</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="p-4 flex-grow flex flex-col">
+            <h3 class="text-[var(--text-primary)] text-lg font-semibold mb-1">{{ pack.name }}</h3>
+            <p class="text-[var(--text-secondary)] text-sm flex-grow">hfh</p>
+            <span class="text-[var(--primary-color)] font-bold mt-2 text-lg">{{ pack.price }} €</span>
+          </div>
+        </div>
+      {% else %}
+        <p class="col-span-4 text-center text-[var(--text-secondary)]">Aucun pack trouvé.</p>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination (statique pour l'instant) -->
+    <div class="flex items-center justify-center pt-12">
+      <a class="flex size-10 items-center justify-center rounded-md hover:bg-gray-700 transition-colors duration-300" href="#">
+        <span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_left</span>
+      </a>
+      <a class="text-sm font-bold leading-normal flex size-10 items-center justify-center text-black rounded-md bg-[var(--primary-color)] mx-1" href="#">1</a>
+      <a class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-[var(--text-secondary)] rounded-md hover:bg-gray-700 hover:text-[var(--text-primary)] transition-colors duration-300 mx-1" href="#">2</a>
+      <a class="text-sm font-normal leading-normal flex size-10 items-center justify-center text-[var(--text-secondary)] rounded-md hover:bg-gray-700 hover:text-[var(--text-primary)] transition-colors duration-300 mx-1" href="#">3</a>
+      <a class="flex size-10 items-center justify-center rounded-md hover:bg-gray-700 transition-colors duration-300" href="#">
+        <span class="material-symbols-outlined text-[var(--text-secondary)]">chevron_right</span>
+      </a>
+    </div>
+  </div>
+</main>
+{% endblock %}

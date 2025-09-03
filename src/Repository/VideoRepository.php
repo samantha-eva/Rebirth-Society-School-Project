@@ -16,6 +16,12 @@ class VideoRepository extends ServiceEntityRepository
         parent::__construct($registry, Video::class);
     }
 
+    public function findAllVideos(): array
+    {
+        // Utilisation de la méthode findAll() héritée de ServiceEntityRepository
+        return $this->findAll();
+    }
+
     //    /**
     //     * @return Video[] Returns an array of Video objects
     //     */
