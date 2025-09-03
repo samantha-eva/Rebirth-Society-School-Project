@@ -1,38 +1,58 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} sam Log in!{% endblock %}
+{% block title %}Dance Studio - Login{% endblock %}
 
 {% block body %}
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
+<div class="flex flex-col min-h-screen bg-[var(--background-color)] text-[var(--text-primary)]">
+    <main class="flex-grow flex items-center justify-center">
+        <div class="w-full max-w-md mx-auto p-8">
+            <div class="bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-700">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold text-[var(--text-primary)]">Welcome Back</h2>
+                    <p class="text-[var(--text-secondary)] mt-2">Sign in to continue to your dance journey.</p>
+                </div>
 
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                <form method="post" class="space-y-6">
+                    {% if error %}
+                        <div class="bg-red-600 text-white px-4 py-2 rounded">
+                            {{ error.messageKey|trans(error.messageData, 'security') }}
+                        </div>
+                    {% endif %}
+
+                    {% if app.user %}
+                        <div class="mb-3 text-sm text-[var(--text-secondary)]">
+                            You are logged in as {{ app.user.userIdentifier }}, 
+                            <a class="text-[var(--primary-color)] hover:underline" href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-secondary)] mb-2" for="username">Email</label>
+                        <input type="email" value="{{ last_username }}" name="_username" id="username" 
+                               class="w-full bg-gray-700 text-[var(--text-primary)] border border-gray-600 rounded-md py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent" 
+                               autocomplete="email" required autofocus>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-[var(--text-secondary)] mb-2" for="password">Password</label>
+                        <input type="password" name="_password" id="password" 
+                               class="w-full bg-gray-700 text-[var(--text-primary)] border border-gray-600 rounded-md py-3 px-4 focus:outline-none focus:ring-2 focus:ring-[var(--primary-color)] focus:border-transparent" 
+                               autocomplete="current-password" required>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+                    <button class="w-full bg-[var(--primary-color)] text-black font-semibold py-3 px-6 rounded-md hover:bg-yellow-600 transition-colors duration-300" type="submit">
+                        Sign In
+                    </button>
+                </form>
+
+                <p class="mt-8 text-center text-sm text-[var(--text-secondary)]">
+                    Don't have an account? 
+                    <a class="font-medium text-[var(--primary-color)] hover:underline" href="{{ path('app_register') }}">Sign up</a>
+                </p>
             </div>
-        {% endif %}
-
-        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-        <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">Password</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
-            </div>
-        #}
-
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-    </form>
+        </div>
+    </main>
+</div>
 {% endblock %}

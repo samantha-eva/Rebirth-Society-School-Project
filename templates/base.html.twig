@@ -67,8 +67,9 @@
                     <button class="flex items-center justify-center rounded-full p-2 hover:bg-gray-800 transition-colors duration-300">
                         <span class="material-symbols-outlined text-gray-300 hover:text-[var(--primary-color)]">shopping_cart</span>
                     </button>
-                    <button class="bg-[var(--primary-color)] text-black font-semibold py-2 px-6 rounded-full hover:bg-yellow-500 transition-colors duration-300">Connexion</button>
-                    <button class="bg-transparent border border-gray-600 text-white font-semibold py-2 px-6 rounded-full hover:bg-gray-800 transition-colors duration-300">Inscription</button>
+                    <button class="bg-[var(--primary-color)] text-black font-semibold py-2 px-6 rounded-full hover:bg-yellow-500 transition-colors duration-300">
+                        <a href="{{ path('app_login') }}">Connexion</a>
+                    </button>
                 </div>
             </header>
             {# ------------- /Navbar ---------------- #}
