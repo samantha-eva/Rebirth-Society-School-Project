@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REBIRTH SOCIETY SCHOOL</title>
+    <link rel="stylesheet" href="{{ asset('css/Home.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+<header>
+    <div class="title">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo">
+        <h3>Rebirth Society School</h3>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_home') }}">Home</a></li>
+            <li><a href="{{path('app_galery')}}">Gallery</a></li>
+        </ul>
+    </nav>
+    <a href="{{ path('app_inscription') }}" class="conins">Login/SignUp</a>
+</header>
+
+<main>
+    <div class="presentation">
+        <p>WELCOME TO</p>
+        <h3>REBIRTH SOCIETY SCHOOL</h3>
+        <p class="slogan">Uplift your soul through dance</p>
+    </div>
+
+    <div class="video">
+        <video controls>
+            <source src="{{ asset('videos/indila.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="profil">
+        <div class="biographie">
+            <h3>REBIRTH SOCIETY SCHOOL</h3>
+            <h4>KARL_KEBENE</h4><br>
+            <p>Rebirth Society est une école/communauté de danse active à Paris–Pantin, dédiée surtout à l’Urban Kiz et au footwork bachata. Karl Bekene, danseur-enseignant (vainqueur Olympiads of Kizomba 2022), y donne des cours hebdomadaires et porte une pédagogie centrée musicalité et connexion.</p><br>
+        </div>
+        <div class="image">
+            <img src="{{ asset('images/ChatGPT Image 2 sept. 2025, 16_24_07.png') }}" alt="Profil">
+        </div>
+    </div>
+
+    <div class="galery">
+        <h4>Our <span>Gallery</span></h4>
+        <p class="soustitre">Discover the magical moments of our school through these videos...</p>
+        <div class="nav">
+            <button class="lien-videos active">Videos</button>
+            <button class="lien-pack">Videos Pack</button>
+        </div>
+        <div class="bloc">
+            {% for i in 1..5 %}
+                <video src="{{ asset('videos/indila.mp4') }}" class="videos" poster="{{ asset('images/miniature.jpg') }}"></video>
+            {% endfor %}
+            
+            {% for i in 1..5 %}
+                <video src="{{ asset('videos/indila.mp4') }}" class="pack" poster="{{ asset('images/miniature.jpg') }}"></video>
+            {% endfor %}
+        </div>
+        <a href="{{path('app_galery')}}" class="lien-videos">Watch More Videos</a>
+    </div>
+</main>
+
+<script src="{{ asset('js/home.js') }}"></script>
+</body>
+</html>

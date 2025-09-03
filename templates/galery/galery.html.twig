@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REBIRTH SOCIETY SCHOOL</title>
+    <link rel="stylesheet" href="{{ asset('css/galery.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+<header>
+    <div class="title">
+        <img src="{{ asset('images/logo.png') }}" alt="Logo">
+        <h3>Rebirth Society School</h3>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="{{ path('app_home') }}">Home</a></li>
+            <li><a href="{{path('app_galery')}}">Gallery</a></li>
+        </ul>
+    </nav>
+    <a href="{{ path('app_inscription') }}" class="conins">Login/SignUp</a>
+</header>
+
+<div class="galery">
+    <h4>Our <span>Gallery</span></h4>
+    <p class="soustitre">Discover the magical moments of our school through these videos...</p>
+    <div class="nav">
+        <button class="lien-videos active">Videos</button>
+        <button class="lien-pack">Videos Pack</button>
+    </div>
+    <div class="bloc">
+        {% for i in 1..5 %}
+            <video src="{{ asset('videos/indila.mp4') }}" class="videos" poster="{{ asset('images/miniature.jpg') }}"></video>
+        {% endfor %}
+        
+        {% for i in 1..5 %}
+            <video src="{{ asset('videos/indila.mp4') }}" class="pack" poster="{{ asset('images/miniature.jpg') }}"></video>
+        {% endfor %}
+    </div>
+</div>
+
+</main>
+
+<script src="{{ asset('js/galery.js') }}"></script>
+</body>
+</html>
