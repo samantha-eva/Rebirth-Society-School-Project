@@ -1,7 +1,86 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello VideoController!{% endblock %}
+{% block title %}Pack Découverte Hip-Hop{% endblock %}
 
 {% block body %}
-partie  video template a voir
+
+<main class="flex-1 bg-[#101010]">
+    <section class="py-16 sm:py-24">
+        <div class="container mx-auto px-4 max-w-7xl">
+
+            <!-- Grid principale : vidéo + contenu du pack -->
+            <div class="grid lg:grid-cols-2 gap-12 items-start">
+
+                <!-- Colonne 1 : vidéo -->
+                <div class="flex flex-col gap-8">
+                    <div class="relative aspect-video rounded-3xl overflow-hidden shadow-2xl shadow-black/60 transform transition-transform duration-300 hover:scale-[1.02]">
+                        <iframe 
+                            class="w-full h-full"
+                            src= "{{video.url}}"
+                            title="YouTube video player" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerpolicy="strict-origin-when-cross-origin" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <!-- Colonne 2 : contenu du pack -->
+                <div class="flex flex-col justify-center gap-6">
+                    <h3 class="text-3xl font-bold text-white mb-6 border-l-4 border-[var(--primary-color)] pl-4">Contenu du pack</h3>
+                    <ul class="space-y-4 text-[var(--text-secondary)]">
+                        <li class="flex items-center gap-4 bg-gray-800/50 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <span class="material-symbols-outlined text-[var(--primary-color)] text-2xl p-1 bg-white/10 rounded-full">check_circle</span>
+                            <span>vidéo(s) exclusives en haute définition</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-gray-800/50 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <span class="material-symbols-outlined text-[var(--primary-color)] text-2xl p-1 bg-white/10 rounded-full">check_circle</span>
+                            <span>Tutoriels pas à pas pour chaque mouvement</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-gray-800/50 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
+                            <span class="material-symbols-outlined text-[var(--primary-color)] text-2xl p-1 bg-white/10 rounded-full">check_circle</span>
+                            <span>Conseils de chorégraphes professionnels</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bloc description + prix + panier -->
+            <div class="flex flex-col gap-6 mt-12">
+                <div class="p-8 bg-gray-900/70 backdrop-blur-md rounded-3xl border border-gray-800 shadow-xl transform transition-transform duration-300 hover:scale-[1.01]">
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Pack Découverte Hip-Hop</h1>
+                    <p class="text-lg text-[var(--text-secondary)] mb-6">
+                        Parfait pour les débutants souhaitant maîtriser les bases du Hip-Hop avec style et confiance.
+                    </p>
+
+                    <!-- Description détaillée -->
+                    <div class="mb-8">
+                        <h2 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Description</h2>
+                        <p class="text-[var(--text-secondary)] leading-relaxed">
+                            Ce pack complet vous guidera à travers les techniques fondamentales du Hip-Hop, des isolations corporelles aux footworks complexes. Chaque vidéo est conçue pour être suivie facilement, vous permettant d'apprendre à votre propre rythme. Préparez-vous à groover et à impressionner sur la piste de danse !
+                        </p>
+                    </div>
+
+                    <!-- Prix et bouton panier -->
+                    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-md">
+                        <div>
+                            <p class="text-sm text-gray-400">Prix</p>
+                            <p class="text-4xl font-bold text-[var(--primary-color)]">49.99€</p>
+                        </div>
+                        <a href="{{ path('app_cart') }}">
+                            <button class="w-full sm:w-auto flex items-center justify-center gap-3 bg-[var(--primary-color)] text-black font-bold py-4 px-8 rounded-full hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 text-lg">
+                                <span class="material-symbols-outlined">add_shopping_cart</span>
+                                Ajouter au Panier
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
+
 {% endblock %}
