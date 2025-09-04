@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pack Découverte Hip-Hop{% endblock %}
+{% block title %}Rebirth Society School{% endblock %}
 
 {% block body %}
 
@@ -32,15 +32,15 @@
                     <ul class="space-y-4 text-[var(--text-secondary)]">
                         <li class="flex items-center gap-4 bg-gray-800/50 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
                             <span class="material-symbols-outlined text-[var(--primary-color)] text-2xl p-1 bg-white/10 rounded-full">check_circle</span>
-                            <span>vidéo(s) exclusives en haute définition</span>
+                            <span>Exclusive high-definition video(s)</span>
                         </li>
                         <li class="flex items-center gap-4 bg-gray-800/50 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
                             <span class="material-symbols-outlined text-[var(--primary-color)] text-2xl p-1 bg-white/10 rounded-full">check_circle</span>
-                            <span>Tutoriels pas à pas pour chaque mouvement</span>
+                            <span>Step-by-step tutorials for each move</span>
                         </li>
                         <li class="flex items-center gap-4 bg-gray-800/50 p-4 rounded-xl shadow-md hover:shadow-xl transition-shadow duration-300">
                             <span class="material-symbols-outlined text-[var(--primary-color)] text-2xl p-1 bg-white/10 rounded-full">check_circle</span>
-                            <span>Conseils de chorégraphes professionnels</span>
+                            <span>Tips from professional choreographers</span>
                         </li>
                     </ul>
                 </div>
@@ -50,29 +50,29 @@
             <!-- Bloc description + prix + panier -->
             <div class="flex flex-col gap-6 mt-12">
                 <div class="p-8 bg-gray-900/70 backdrop-blur-md rounded-3xl border border-gray-800 shadow-xl transform transition-transform duration-300 hover:scale-[1.01]">
-                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Pack Découverte Hip-Hop</h1>
+                    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-3">Discovery Pack</h1>
                     <p class="text-lg text-[var(--text-secondary)] mb-6">
-                        Parfait pour les débutants souhaitant maîtriser les bases du Hip-Hop avec style et confiance.
+                       Perfect for beginners looking to master the basics, style, and confidence
                     </p>
 
                     <!-- Description détaillée -->
                     <div class="mb-8">
                         <h2 class="text-2xl font-bold text-white mb-4 border-b border-gray-700 pb-2">Description</h2>
                         <p class="text-[var(--text-secondary)] leading-relaxed">
-                            Ce pack complet vous guidera à travers les techniques fondamentales du Hip-Hop, des isolations corporelles aux footworks complexes. Chaque vidéo est conçue pour être suivie facilement, vous permettant d'apprendre à votre propre rythme. Préparez-vous à groover et à impressionner sur la piste de danse !
+                            Discover our individual lessons and exclusive packages to progress at your own pace.
                         </p>
                     </div>
 
                     <!-- Prix et bouton panier -->
                     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 bg-gray-800/50 p-6 rounded-xl border border-gray-700 shadow-md">
                         <div>
-                            <p class="text-sm text-gray-400">Prix</p>
-                            <p class="text-4xl font-bold text-[var(--primary-color)]">49.99€</p>
+                            <p class="text-sm text-gray-400">Price</p>
+                            <p class="text-4xl font-bold text-[var(--primary-color)]">{{ pack.price}}€</p>
                         </div>
                         <a href="{{ path('app_cart') }}">
                             <button class="w-full sm:w-auto flex items-center justify-center gap-3 bg-[var(--primary-color)] text-black font-bold py-4 px-8 rounded-full hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 text-lg">
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
-                                Ajouter au Panier
+                               Add to Cart
                             </button>
                         </a>
                     </div>
