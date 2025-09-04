@@ -10,37 +10,53 @@ use App\Repository\VideoRepository;
 final class CatalogueController extends AbstractController
 {
 
-    #[Route('/catalogue', name: 'catalogue')]
-    public function index(PackRepository $packRepo, VideoRepository $videoRepo): Response
-        {
-            // Récupérer tous les packs et vidéos
-            $packs = $packRepo->findAllPacks();
-            $videos = $videoRepo->findAllVideos();
+   // src/Controller/CatalogueController.php
 
-            // Préparer une liste mixte
-            $elements = [];
+#[Route('/catalogue/{page<\d+>?1}', name: 'catalogue')]
+public function index(
+    PackRepository $packRepo,
+    VideoRepository $videoRepo,
+    int $page = 1
+): Response {
+    $limit = 12; // éléments par page
 
-            // Ajouter les packs
-            foreach ($packs as $pack) {
-                $elements[] = [
-                    'type' => 'pack',             // pour identifier le type
-                    'name' => $pack->getName(),
-                    'videos' => $pack->getVideos(), // nombre de vidéos
-                ];
-            }
+    // Récupérer tous les packs et vidéos
+    $packs = $packRepo->findAll();
+    $videos = $videoRepo->findAll();
 
-            // Ajouter les vidéos individuelles
-            foreach ($videos as $video) {
-                $elements[] = [
-                    'type' => 'video',            // pour identifier le type
-                    'name' => $video->getName(),
-                    'categorie' => $video->getCategorie(), // objet catégorie
-                ];
-            }
-
-            // Envoyer la liste mixte à la vue
-            return $this->render('catalogue/index.html.twig', [
-                'elements' => $elements,
-            ]);
-        }
+    // Liste mixte
+    $elements = [];
+    foreach ($packs as $pack) {
+        $elements[] = [
+            'type' => 'pack',
+            'nom' => $pack->getName(),
+            'videos' => $pack->getVideos(),
+            'price' => $pack->getPrice(),
+            'image' => $pack->getImage(),
+        ];
     }
+    foreach ($videos as $video) {
+        $elements[] = [
+            'type' => 'video',
+            'nom' => $video->getName(),
+            'categorie' => $video->getCategorie(),
+            'price' => $video->getPrice(),
+            'image' => $video->getImage(),
+        ];
+    }
+
+    // Pagination manuelle
+    $total = count($elements);
+    $pages = ceil($total / $limit);
+    $elements = array_slice($elements, ($page - 1) * $limit, $limit);
+
+    return $this->render('catalogue/index.html.twig', [
+        'elements' => $elements,
+        'page' => $page,
+        'pages' => $pages,
+    ]);
+}
+
+
+}
+

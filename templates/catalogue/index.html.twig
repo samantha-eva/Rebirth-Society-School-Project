@@ -6,34 +6,102 @@
 <main class="container mx-auto px-4 py-8 max-w-7xl">
 
   <div class="text-center mb-12">
-    <h1 class="text-4xl md:text-5xl font-bold text-[var(--text-primary)] mb-4">Catalogue Vidéo</h1>
-    <p class="text-lg text-[var(--text-secondary)] leading-relaxed max-w-3xl mx-auto">
-      Explore our curated collection of dance video packs and individual classes.
+    <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+      Catalogue Vidéo
+    </h1>
+    <p class="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
+      Découvrez nos cours individuels et packs exclusifs pour progresser à votre rythme.
     </p>
   </div>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
     {% for el in elements %}
-      <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-700 group">
+      <div class="bg-black rounded-2xl shadow-xl overflow-hidden border border-gray-800 group flex flex-col hover:shadow-2xl transition">
+        
+        {# Image de couverture #}
         <div class="relative">
-          <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-t-lg"
-               style="background-image: url('{{ el.image ?? 'https://via.placeholder.com/300x400' }}');">
+          <div class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover"
+               style="background-image: url('{{ asset('uploads/packs/' ~ el.image) }}');">
           </div>
-          <div class="absolute inset-0 bg-black bg-opacity-20 group-hover:bg-opacity-50 transition-all duration-300"></div>
-          <div class="absolute bottom-4 left-4 right-4">
-            <h3 class="text-white text-lg font-bold">{{ el.name }}</h3>
+
+          {# Overlay hover #}
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-70 group-hover:opacity-90 transition-all duration-300"></div>
+          
+          {# Badge type en doré/noir #}
+          <div class="absolute top-4 left-4 flex items-center gap-2">
+            {% if el.type == 'pack' %}
+              <span class="px-3 py-1 text-xs font-semibold uppercase rounded-full bg-[var(--gold,#f9b006)] text-black shadow">
+                🎁 Pack
+              </span>
+            {% else %}
+              <span class="px-3 py-1 text-xs font-semibold uppercase rounded-full bg-[var(--gold,#f9b006)] text-black shadow">
+                🎥 Vidéo
+              </span>
+            {% endif %}
+          </div>
+
+          {# Prix en doré bien visible #}
+          <div class="absolute top-4 right-4">
+            <span class="px-3 py-1 text-sm font-bold rounded-full bg-[var(--gold,#f9b006)] text-black shadow-lg">
+              {{ el.price }} €
+            </span>
+          </div>
+
+          {# Titre + détails en bas de l’image #}
+          <div class="absolute bottom-4 left-4 right-4 space-y-2">
+            <h3 class="text-white text-xl font-bold drop-shadow">{{ el.nom }}</h3>
 
             {% if el.type == 'pack' %}
-              <span class="badge badge-pack">Pack</span>
-              <p class="text-gray-300 text-sm">{{ el.videos|length }} vidéos</p>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gray-900/80 text-[var(--gold,#f9b006)] border border-[var(--gold,#f9b006)]">
+                📦 {{ el.videos|length }} vidéos incluses
+              </span>
             {% else %}
-              <span class="badge badge-video">Cours individuel</span>
-              <p class="text-gray-300 text-sm">Catégorie : {{ el.categorie.name }}</p>
+              <span class="inline-block px-3 py-1 text-xs font-semibold rounded-full bg-gray-900/80 text-[var(--gold,#f9b006)] border border-[var(--gold,#f9b006)]">
+                📂 {{ el.categorie.name }}
+              </span>
             {% endif %}
           </div>
         </div>
+        {% if el.type == 'pack' %}
+        {# Bouton action doré/noir #}
+        <div class="mt-auto p-4 text-center">
+          <button class="bg-[var(--gold,#f9b006)] text-black px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition">
+             Découvrir le pack
+          </button>
+        </div>
+         {% else %}
+          <div class="mt-auto p-4 text-center">
+          <button class="bg-[var(--gold,#f9b006)] text-black px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition">
+             Découvrir la vidéo
+          </button>
+        </div>
+        {% endif %}
       </div>
     {% endfor %}
+  </div>
+
+  {# Pagination simple #}
+  <div class="flex justify-center gap-2 mt-12">
+    {% if page > 1 %}
+      <a href="{{ path('catalogue', {'page': page - 1}) }}"
+         class="px-4 py-2 bg-black text-[var(--gold,#f9b006)] border border-[var(--gold,#f9b006)] rounded-lg hover:bg-[var(--gold,#f9b006)] hover:text-black transition">
+        ⬅ Précédent
+      </a>
+    {% endif %}
+
+    {% for p in 1..pages %}
+      <a href="{{ path('catalogue', {'page': p}) }}"
+         class="px-4 py-2 rounded-lg border {% if p == page %}bg-[var(--gold,#f9b006)] text-black font-bold{% else %}bg-black text-[var(--gold,#FFD700)] border-[var(--gold,#FFD700)] hover:bg-[var(--gold,#FFD700)] hover:text-black{% endif %}">
+        {{ p }}
+      </a>
+    {% endfor %}
+
+    {% if page < pages %}
+      <a href="{{ path('catalogue', {'page': page + 1}) }}"
+         class="px-4 py-2 bg-black text-[var(--gold,#FFD700)] border border-[var(--gold,#f9b006)] rounded-lg hover:bg-[var(--gold,#FFD700)] hover:text-black transition">
+        Suivant ➡
+      </a>
+    {% endif %}
   </div>
 
 </main>
