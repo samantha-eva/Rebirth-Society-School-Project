@@ -33,6 +33,9 @@ class Pack
     #[ORM\ManyToMany(targetEntity: Video::class, mappedBy: 'packs')]
     private Collection $videos;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     public function __construct()
     {
         $this->Commande = new ArrayCollection();
@@ -115,6 +118,18 @@ class Pack
         if ($this->videos->removeElement($video)) {
             $video->removePack($this);
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): static
+    {
+        $this->image = $image;
 
         return $this;
     }
