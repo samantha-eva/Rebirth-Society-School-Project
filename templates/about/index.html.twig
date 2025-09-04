@@ -1,0 +1,105 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}À propos - Rebirth Society{% endblock %}
+
+{% block body %}
+<main class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 max-w-5xl">
+
+    <!-- Hero -->
+    <section class="text-center mb-24">
+        <h1 class="text-4xl md:text-6xl font-extrabold text-[var(--text-primary)] mb-4 leading-tight tracking-tighter">
+            WE ARE REBIRTH
+        </h1>
+        <p class="text-lg text-[var(--text-secondary)] leading-relaxed max-w-3xl mx-auto">
+            A space for movement, expression, and community. We believe dance is a journey of self-discovery,
+            a celebration of creativity, and the power to overcome oneself.
+        </p>
+    </section>
+
+    <!-- Big Banner -->
+    <div class="mb-24 h-[60vh] w-full rounded-2xl overflow-hidden shadow-2xl">
+        <div class="w-full h-full bg-center bg-no-repeat bg-cover"
+           style="background-image: url('{{ asset('images/page_about.jpg') }}');">
+        </div>
+    </div>
+
+    <!-- Philosophy -->
+    <section class="grid md:grid-cols-2 gap-16 items-center mb-24">
+        <div>
+            <h2 class="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6 border-b-2 border-[var(--primary-color)] pb-4 inline-block">
+                Our Philosophy
+            </h2>
+            <p class="text-lg text-[var(--text-secondary)] leading-relaxed">
+                Our philosophy is rooted in the belief that dance is more than just movement; it's a form of expression,
+                a journey of self-discovery, and a celebration of individuality. We encourage our students to embrace
+                their unique style, challenge themselves, and find joy in the process of learning and performing.
+            </p>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 aspect-square">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDpUHaqsH8S3ikSPCqdQIC8z-DCFdMxTYguUHHUfQA2ZUbPsWATV0so1CXDbPycNqA2Wd7Dp2bEt6MOM64oodEowIi3NqHz6T8YJOqma_gjrOT_XCz1JPNaLZbWtch48dlXbMSXQbuSkHNZ4KVnfRPdTn2Wf3mo45p65R2lW3WFz0hCi0y4fn1w9ACasMk6CIZKslJmu-ElmBrgV9hXgk_k4I7L_yZn9Q4EcXc0ANZfqhGnL27J-sF0PgSpZsSOeSuJOUM2OFeOOKy2"
+                     alt="Dancer in motion" class="w-full h-full object-cover">
+            </div>
+            <div class="rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 aspect-square mt-8">
+                <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb41q8ZU8YgL0r94ebgwbn-kIPKsXub3dswrnBXzewlXYlQsi2kaJodeydb_26MjsDpMTI3L_c-KnYQMTaBnmnLa6xGGS3zLa6qmms0_HcYo7vPV8gZ2m0TXuvSMg3wyXnKDUoYG3wSuu3vRDZaByhwoITytuiCt1_jgrrBhomRvEqN5xX7ortrbX4VixQ0kK6Js4il62PofGzPoL4750wdkYx52ksv_RvN2tOX7cOH0GjWwtpF0hskre5rQkrkPcoD8BoVNb7_aL8"
+                     alt="Artistic dance visual" class="w-full h-full object-cover">
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Values -->
+    <section class="mb-24">
+        <h2 class="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-12 text-center">Our Core Values</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+            <!-- Creativity -->
+            <div class="bg-gray-800/20 p-8 rounded-2xl shadow-lg border border-gray-700/50 text-center flex flex-col items-center">
+                <div class="p-4 bg-[var(--primary-color)]/20 rounded-full mb-4 text-2xl">
+                    🎨
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Creativity</h3>
+                <p class="text-[var(--text-secondary)]">We foster a supportive and inclusive community where dancers can connect, collaborate, and inspire each other.</p>
+            </div>
+
+            <!-- Self-transcendence -->
+            <div class="bg-gray-800/20 p-8 rounded-2xl shadow-lg border border-gray-700/50 text-center flex flex-col items-center transform md:scale-110 md:-translate-y-4">
+                <div class="p-4 bg-[var(--primary-color)]/20 rounded-full mb-4 text-2xl">
+                    🔥
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Self-transcendence</h3>
+                <p class="text-[var(--text-secondary)]">We are driven by our passion for dance and our commitment to providing high-quality instruction.</p>
+            </div>
+
+            <!-- Community -->
+            <div class="bg-gray-800/20 p-8 rounded-2xl shadow-lg border border-gray-700/50 text-center flex flex-col items-center">
+                <div class="p-4 bg-[var(--primary-color)]/20 rounded-full mb-4 text-2xl">
+                    🤝
+                </div>
+                <h3 class="text-xl font-bold text-white mb-2">Community</h3>
+                <p class="text-[var(--text-secondary)]">We strive for excellence in all aspects of our studio, from our teaching methods to our performance standards.</p>
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- Story -->
+    <section class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="order-2 md:order-1">
+            <h2 class="text-3xl md:text-4xl font-bold text-[var(--text-primary)] mb-6 border-b-2 border-[var(--primary-color)] pb-4 inline-block">
+                Our Story
+            </h2>
+            <p class="text-lg text-[var(--text-secondary)] leading-relaxed">
+                Rebirth Society was founded in 2018 with a vision to create a dance studio that nurtures talent, fosters creativity,
+                and builds a strong sense of community. Starting with just a few classes, the studio has grown into a thriving hub for dancers
+                of all ages and skill levels, offering a wide range of classes, workshops, and performance opportunities in the heart of Pantin.
+            </p>
+        </div>
+        <div class="order-1 md:order-2 rounded-2xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCaakbHh0VZyT5Km4J9WruN2c1Y1HG9TK2qA7hRpUh9YmzCO0Ke_rofPsnCNEd8TtmLgqFUd8nr4nSEOXRkW_vJPDWjaw9bxxFg6V7DNKZH_AhbNSBsrozScXvUsLoBWFYo83s3mxzzGI9ruzBVe63mA8KIruOZo6x4pqFsNbX1drHo88sPvtU0euMkauHLy-FaqKYP6Gpm10AOWL4kTEVM-s2EQf-MsQiJWmuwWD2594Q6emk1XuvkOBHENhaY3wn2h8XGfMYC8-Xg"
+                 alt="Group of dancers" class="w-full h-full object-cover">
+        </div>
+    </section>
+
+</main>
+{% endblock %}
