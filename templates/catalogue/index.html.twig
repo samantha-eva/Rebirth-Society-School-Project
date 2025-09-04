@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catalogue{% endblock %}
+{% block title %}app_shop{% endblock %}
 
 {% block body %}
 <main class="container mx-auto px-4 py-8 max-w-7xl">
 
   <div class="text-center mb-12">
     <h1 class="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
-      Catalogue Vidéo
+      app_shop Vidéo
     </h1>
     <p class="text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto">
       Découvrez nos cours individuels et packs exclusifs pour progresser à votre rythme.
@@ -17,7 +17,7 @@
   {# --- Filtres --- #}
   <div class="flex flex-wrap justify-center gap-4 mb-12">
     {% for cat in ['all', 'ballet', 'hiphop', 'contemporary'] %}
-      <a href="{{ path('catalogue', {'page': 1, 'filter': cat}) }}"
+      <a href="{{ path('app_shop', {'page': 1, 'filter': cat}) }}"
          class="px-5 py-2 rounded-full text-sm font-semibold transition 
                 {% if filter == cat %}
                   bg-[var(--gold,#f9b006)] text-black hover:bg-yellow-400
@@ -65,10 +65,13 @@
           </div>
         </div>
         <div class="mt-auto p-4 text-center">
-          <button class="bg-[var(--gold,#f9b006)] text-black px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition">
-            {{ el.type == 'pack' ? 'Découvrir le pack' : 'Découvrir la vidéo' }}
-          </button>
-        </div>
+          <a href="{{ el.type == 'pack' 
+                    ? path('pack_detail', {'id': el.id}) 
+                    : path('video_detail', {'id': el.id}) }}"
+            class="bg-[var(--gold,#f9b006)] text-black px-5 py-2 rounded-full font-semibold hover:bg-yellow-400 transition inline-block">
+              {{ el.type == 'pack' ? 'Découvrir le pack' : 'Découvrir la vidéo' }}
+          </a>
+      </div>
       </div>
     {% else %}
       <p class="col-span-full text-center text-gray-400">Aucun contenu disponible pour ce filtre.</p>
@@ -78,21 +81,21 @@
   {# --- Pagination --- #}
   <div class="flex justify-center gap-2 mt-12">
     {% if page > 1 %}
-      <a href="{{ path('catalogue', {'page': page - 1, 'filter': filter}) }}"
+      <a href="{{ path('app_shop', {'page': page - 1, 'filter': filter}) }}"
          class="px-4 py-2 bg-black text-[var(--gold,#f9b006)] border border-[var(--gold,#f9b006)] rounded-lg hover:bg-[var(--gold,#f9b006)] hover:text-black transition">
         ⬅ Précédent
       </a>
     {% endif %}
 
     {% for p in 1..pages %}
-      <a href="{{ path('catalogue', {'page': p, 'filter': filter}) }}"
+      <a href="{{ path('app_shop', {'page': p, 'filter': filter}) }}"
          class="px-4 py-2 rounded-lg border {% if p == page %}bg-[var(--gold,#f9b006)] text-black font-bold{% else %}bg-black text-[var(--gold,#FFD700)] border-[var(--gold,#FFD700)] hover:bg-[var(--gold,#FFD700)] hover:text-black{% endif %}">
         {{ p }}
       </a>
     {% endfor %}
 
     {% if page < pages %}
-      <a href="{{ path('catalogue', {'page': page + 1, 'filter': filter}) }}"
+      <a href="{{ path('app_shop', {'page': page + 1, 'filter': filter}) }}"
          class="px-4 py-2 bg-black text-[var(--gold,#FFD700)] border border-[var(--gold,#f9b006)] rounded-lg hover:bg-[var(--gold,#FFD700)] hover:text-black transition">
         Suivant ➡
       </a>

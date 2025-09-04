@@ -11,7 +11,7 @@ use App\Repository\VideoRepository;
 
 final class CatalogueController extends AbstractController
 {
-    #[Route('/catalogue/{page<\d+>?1}', name: 'catalogue')]
+    #[Route('/catalogue/{page<\d+>?1}', name: 'app_shop')]
     public function index(
         PackRepository $packRepo,
         VideoRepository $videoRepo,
@@ -29,6 +29,7 @@ final class CatalogueController extends AbstractController
         $elements = [];
         foreach ($packs as $pack) {
             $elements[] = [
+                'id' => $pack->getId(),
                 'type' => 'pack',
                 'nom' => $pack->getName(),
                 'videos' => $pack->getVideos(),
@@ -38,6 +39,7 @@ final class CatalogueController extends AbstractController
         }
         foreach ($videos as $video) {
             $elements[] = [
+                'id' => $video->getId(),
                 'type' => 'video',
                 'nom' => $video->getName(),
                 'categorie' => $video->getCategorie(),
