@@ -5,11 +5,18 @@
 {% block body %}
 <main class="flex-1 bg-black text-[var(--text-primary)]">
 
-    {# Hero Section #}
-    <section class="relative h-[60vh] flex items-center justify-center text-center">
-        <div class="absolute top-0 left-0 w-full h-full bg-cover bg-center" 
-             style="background-image: url('https://example.com/background.jpg');"></div>
-        <div class="absolute top-0 left-0 w-full h-full bg-black/70 z-10"></div>
+    {# Hero Section avec vidéo de fond #}
+    <section class="relative h-[65vh] flex items-center justify-center text-center overflow-hidden">
+        {# Vidéo en arrière-plan #}
+        <div class="absolute top-0 left-0 w-full h-full z-0">
+            <video autoplay loop muted playsinline class="w-full h-full object-cover">
+                <source src="{{ asset('images/Kizomba.mp4') }}" type="video/mp4"/>
+                Votre navigateur ne supporte pas la balise vidéo.
+            </video>
+            <div class="absolute inset-0 bg-black/70"></div> {# Overlay pour lisibilité du texte #}
+        </div>
+
+        {# Contenu texte par-dessus la vidéo #}
         <div class="relative z-20 px-4">
             <h1 class="text-4xl md:text-6xl font-extrabold text-white mb-6 leading-tight drop-shadow-lg">
                 Bienvenue sur Rebirth Society School!
@@ -46,7 +53,7 @@
                             <span class="text-3xl font-bold text-[var(--primary-color)]">{{ pack.price }}€</span>
                             <span class="text-sm text-gray-400 bg-gray-800 px-3 py-1 rounded-full"> Vidéos</span>
                         </div>
-                         <a href="{{ path('pack_detail', {'id': pack.id}) }}">
+                        <a href="{{ path('pack_detail', {'id': pack.id}) }}">
                             <button class="w-full bg-[var(--primary-color)] text-black font-bold py-3 px-6 rounded-lg hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105">
                                 Découvrir le Pack
                             </button>
@@ -65,7 +72,6 @@
                         </span>
                     </button>
                 </a>
-
             </div>
         </div>
     </section>
