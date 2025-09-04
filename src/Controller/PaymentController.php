@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 
@@ -31,4 +32,19 @@ class PaymentController extends AbstractController
             'clientSecret' => $paymentIntent->client_secret,
         ]);
     }
+
+    #[Route('/payment', name: 'payment')]
+    public function index(): Response
+    {
+        return $this->render('payment/payment.html.twig', [
+            'stripe_public_key' => $_ENV['STRIPE_PUBLIC_KEY'],
+        ]);
+    }
+
+    #[Route('/payment/success', name: 'payment_success')]
+    public function success(): Response
+    {
+        return $this->render('payment/success.html.twig');
+    }
+
 }
