@@ -49,27 +49,45 @@
             <header class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-gray-800 bg-black/80 px-10 py-4 backdrop-blur-sm">
                 <div class="flex items-center gap-4">
                     <div class="text-[var(--primary-color)]">
-                        <svg class="lucide lucide-gem" fill="none" height="32" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M6 3h12l4 6-10 13L2 9z"></path>
-                            <path d="M12 22V9"></path>
-                            <path d="m3.5 8.5 17 0"></path>
-                        </svg>
+                    <img src="{{ asset('images/logo.png') }}" style="width: 100px; height: auto;" />
                     </div>
                     <h2 class="text-xl font-bold leading-tight tracking-[-0.015em]">Rebirth Society School</h2>
                 </div>
-                <nav class="hidden md:flex items-center gap-9">
-                    <a class="text-gray-300 hover:text-[var(--primary-color)] transition-colors duration-300 text-sm font-medium leading-normal" href="{{ path('app_home') }}">Home</a>
-                    <a class="text-gray-300 hover:text-[var(--primary-color)] transition-colors duration-300 text-sm font-medium leading-normal" href="{{ path('app_shop') }}">Shop</a>
-                    <a class="text-white font-semibold border-b-2 border-[var(--primary-color)] pb-1" href="#">Packs Vidéo</a>
-                    <a class="text-gray-300 hover:text-[var(--primary-color)] transition-colors duration-300 text-sm font-medium leading-normal" href="{{ path('app_about') }}">About</a>
-                </nav>
+                <nav class="hidden md:flex items-center gap-9 text-lg font-medium leading-normal">
+                        <a href="{{ path('app_home') }}"
+                        class="text-gray-300 hover:text-[var(--primary-color)] transition-colors duration-300">
+                            Home
+                        </a>
+                        <a href="{{ path('app_shop') }}"
+                        class="text-gray-300 hover:text-[var(--primary-color)] transition-colors duration-300">
+                            Shop
+                        </a>
+                        <a href="{{ path('app_about') }}"
+                        class="text-gray-300 hover:text-[var(--primary-color)] transition-colors duration-300">
+                            About
+                        </a>
+                    </nav>
+
                 <div class="flex items-center gap-4">
                     <button class="flex items-center justify-center rounded-full p-2 hover:bg-gray-800 transition-colors duration-300">
                         <span class="material-symbols-outlined text-gray-300 hover:text-[var(--primary-color)]">shopping_cart</span>
                     </button>
-                    <button class="bg-[var(--primary-color)] text-black font-semibold py-2 px-6 rounded-full hover:bg-yellow-500 transition-colors duration-300">
-                        <a href="{{ path('app_login') }}">Connexion</a>
-                    </button>
+                   {% if app.user %}
+                        {# L'utilisateur est connecté -> bouton Déconnexion #}
+                        <form method="post" action="{{ path('app_logout') }}">
+                            <button type="submit" class="bg-[var(--primary-color)] text-black font-semibold py-2 px-6 rounded-full hover:bg-yellow-500 transition-colors duration-300">
+                                Déconnexion
+                            </button>
+                        </form>
+                    {% else %}
+                        {# L'utilisateur n'est pas connecté -> bouton Connexion #}
+                        <a href="{{ path('app_login') }}">
+                            <button class="bg-[var(--primary-color)] text-black font-semibold py-2 px-6 rounded-full hover:bg-yellow-500 transition-colors duration-300">
+                                Connexion
+                            </button>
+                        </a>
+                    {% endif %}
+
                 </div>
             </header>
             {# ------------- /Navbar ---------------- #}
