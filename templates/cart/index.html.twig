@@ -6,74 +6,77 @@
 <main class="flex-1 px-4 sm:px-6 lg:px-8 py-12">
     <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl font-bold text-primary mb-8">Shopping Cart</h1>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- Cart Items -->
-            <div class="md:col-span-2">
-                <div class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 overflow-hidden">
-                    <table class="w-full">
-                        <thead class="bg-gray-900">
-                            <tr>
-                                <th class="px-6 py-4 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Product</th>
-                                <th class="px-6 py-4 text-center text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Quantity</th>
-                                <th class="px-6 py-4 text-right text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Price</th>
-                                <th class="px-6 py-4 text-right text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Total</th>
-                                <th class="px-6 py-4 text-right text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider"></th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-gray-700">
-                            {# {% for item in cartItems %} #}
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="flex items-center">
-                                        <div class="ml-4">
-                                            <div class="text-sm font-medium text-[var(--text-primary)]">PRODUUT</div>
-                                            <div class="text-sm text-[var(--text-secondary)]">TYOE</div>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-center">
-                                    <div class="flex items-center justify-center">
-                                        <span class="mx-2 text-sm text-[var(--text-primary)]">Quantity</span>     
-                                    </div>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-[var(--text-primary)]"> $PRIX</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-[var(--text-primary)]">$ TOTAL</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    {# <a class="text-red-500 hover:text-red-700" href="{{ path('cart_remove', {'id': item.id}) }}">Remove</a> #}
-                                </td>
-                            </tr>
-                            {# {% endfor %} #}
-                        </tbody>
-                    </table>
-                </div>
-            </div>
 
-            <!-- Order Summary -->
-            <div class="md:col-span-1">
-                <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
-                    <h2 class="text-2xl font-semibold text-[var(--text-primary)] mb-6">Order Summary</h2>
-                    <div class="space-y-4">
-                        <div class="flex justify-between text-sm">
-                            <span class="text-[var(--text-secondary)]">Subtotal</span>
-                            <span class="text-[var(--text-primary)]">$11</span>
-                        </div>
-                        <div class="flex justify-between text-sm">
-                            <span class="text-[var(--text-secondary)]">Shipping</span>
-                            <span class="text-[var(--text-primary)]">TOTO</span>
-                        </div>
-                       
-                        <div class="border-t border-gray-700 my-4"></div>
-                        <div class="flex justify-between text-lg font-bold">
-                            <span class="text-[var(--text-primary)]">Total</span>
-                            <span class="text-[var(--text-primary)]">$100</span>
-                        </div>
+        {% if cart_items is empty %}
+            <p class="text-[var(--text-secondary)] text-lg">Votre panier est vide.</p>
+        {% else %}
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                <!-- Cart Items -->
+                <div class="md:col-span-2">
+                    <div class="bg-gray-800 rounded-lg shadow-lg border border-gray-700 overflow-hidden">
+                        <table class="w-full">
+                            <thead class="bg-gray-900">
+                                <tr>
+                                    <th class="px-6 py-4 text-left text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Product</th>
+                                    <th class="px-6 py-4 text-center text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Quantity</th>
+                                    <th class="px-6 py-4 text-right text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Price</th>
+                                    <th class="px-6 py-4 text-right text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider">Total</th>
+                                    <th class="px-6 py-4 text-right text-xs font-medium text-[var(--text-secondary)] uppercase tracking-wider"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-700">
+                                {% set total = 0 %}
+                                {% for i in 0..(cart_items.id|length - 1) %}
+                                    {% set line_total = cart_items.price[i] %}
+                                    {% set total = total + line_total %}
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm font-medium text-[var(--text-primary)]">{{ cart_items.name[i] }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-center">
+                                            1
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm text-[var(--text-primary)]">{{ cart_items.price[i] }}€</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-semibold text-[var(--text-primary)]">{{ line_total }}€</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            {# Lien pour retirer un produit du panier, à implémenter #}
+                                            {# <a href="{{ path('cart_remove', {'id': cart_items.id[i]}) }}" class="text-red-500 hover:text-red-700">Remove</a> #}
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
                     </div>
-                    <a href="" class="mt-8 w-full bg-[var(--primary-color)] text-black py-3 px-4 rounded-md font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-200 inline-block text-center">
-                        Proceed to Checkout
-                    </a>
                 </div>
+
+                <!-- Order Summary -->
+                <div class="md:col-span-1">
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                        <h2 class="text-2xl font-semibold text-[var(--text-primary)] mb-6">Order Summary</h2>
+                        <div class="space-y-4">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-[var(--text-secondary)]">Subtotal</span>
+                                <span class="text-[var(--text-primary)]">{{ total }}€</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-[var(--text-secondary)]">Shipping</span>
+                                <span class="text-[var(--text-primary)]">Free</span>
+                            </div>
+                            <div class="border-t border-gray-700 my-4"></div>
+                            <div class="flex justify-between text-lg font-bold">
+                                <span class="text-[var(--text-primary)]">Total</span>
+                                <span class="text-[var(--text-primary)]">{{ total }}€</span>
+                            </div>
+                        </div>
+                        <a href="{{ path('payment') }}" class="mt-8 w-full bg-[var(--primary-color)] text-black py-3 px-4 rounded-md font-semibold hover:bg-[var(--secondary-color)] transition-colors duration-200 inline-block text-center">
+                            Proceed to Checkout
+                        </a>
+                    </div>
+                </div>
+
             </div>
-        </div>
+        {% endif %}
     </div>
 </main>
 {% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Paiement réussi{% endblock %}
+
+{% block body %}
+<div class="flex items-center justify-center min-h-screen bg-[#0F0F0F] px-4">
+    <div class="flex flex-col items-center justify-center w-full max-w-md p-8 bg-[#1A1A1A] rounded-2xl shadow-lg">
+        
+        <!-- Icône cercle jaune -->
+        <div class="flex items-center justify-center w-24 h-24 mb-6 bg-[#F9B006] rounded-full">
+            <span class="material-symbols-outlined text-black text-6xl">done</span>
+        </div>
+
+        <!-- Titre -->
+        <h2 class="text-white tracking-tight text-4xl font-bold leading-tight text-center mb-4">
+            Paiement Réussi !
+        </h2>
+
+        <!-- Texte -->
+        <p class="text-gray-400 text-lg font-normal leading-relaxed text-center mb-8">
+            Votre paiement a été traité avec succès. Vous avez maintenant accès à toutes nos vidéos de danse.
+        </p>
+
+        <!-- Séparateur -->
+        <div class="w-full border-t border-gray-700 my-8"></div>
+
+        <!-- Récap achat -->
+        <div class="text-left w-full mb-8">
+            <h3 class="text-white text-xl font-semibold mb-4">
+                Récapitulatif de l'achat
+            </h3>
+            <div class="flex justify-between items-center">
+                <span class="text-gray-400">Date</span>
+                <span class="text-white font-medium">{{ "now"|date("d F Y") }}</span>
+            </div>
+        </div>
+
+        <!-- Bouton -->
+        <a href="{{ path('app_home') }}"
+           class="flex w-full min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[#f9b006] text-black text-lg font-bold leading-normal tracking-wide transform hover:scale-105 transition-transform duration-300">
+            <span class="truncate">Commencer à Danser</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
