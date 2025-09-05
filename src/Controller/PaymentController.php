@@ -17,11 +17,23 @@ class PaymentController extends AbstractController
     {
         Stripe::setApiKey($_ENV['STRIPE_SECRET_KEY']);
 
-        // Exemple: récupérer le montant depuis la requête ou un produit
-        $amount = 2000; // en centimes -> 20.00 EUR
+        // Récupérer le panier depuis la session
+        $session = $request->getSession();
+        $cart = $session->get('cart', []);
+
+        // Calculer le montant total
+        $amount = 0;
+        if (!empty($cart['price'])) {
+            foreach ($cart['price'] as $price) {
+                $amount += $price; // montant en € ou centimes ?
+            }
+        }
+
+        // Stripe attend le montant en centimes
+        $amountInCents = $amount * 100;
 
         $paymentIntent = PaymentIntent::create([
-            'amount' => $amount,
+            'amount' => $amountInCents,
             'currency' => 'eur',
             'automatic_payment_methods' => [
                 'enabled' => true,
@@ -34,16 +46,31 @@ class PaymentController extends AbstractController
     }
 
     #[Route('/payment', name: 'payment')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        // Récupérer le total du panier pour affichage éventuel
+        $session = $request->getSession();
+        $cart = $session->get('cart', []);
+        $total = 0;
+        if (!empty($cart['price'])) {
+            $total = array_sum($cart['price']);
+        }
+
         return $this->render('payment/index.html.twig', [
             'stripe_public_key' => $_ENV['STRIPE_PUBLIC_KEY'],
+            'cart_total' => $total
         ]);
     }
 
     #[Route('/payment/success', name: 'payment_success')]
-    public function success(): Response
+    public function success(Request $request): Response
     {
+
+        // Récupérer la session
+        $session = $request->getSession();
+
+        // Supprimer le panier après paiement réussi
+        $session->remove('cart');
         return $this->render('payment/success.html.twig');
     }
 

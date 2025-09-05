@@ -69,7 +69,7 @@
                             <p class="text-sm text-gray-400">Price</p>
                             <p class="text-4xl font-bold text-[var(--primary-color)]">{{ pack.price}}€</p>
                         </div>
-                        <a href="{{ path('app_cart') }}">
+                        <a href="{{ path('app_add_cart', {'idPack': pack.id}) }}">
                             <button class="w-full sm:w-auto flex items-center justify-center gap-3 bg-[var(--primary-color)] text-black font-bold py-4 px-8 rounded-full hover:bg-yellow-500 transition-all duration-300 transform hover:scale-105 text-lg">
                                 <span class="material-symbols-outlined">add_shopping_cart</span>
                                Add to Cart
